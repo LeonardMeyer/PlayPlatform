@@ -28,6 +28,21 @@ namespace PlayPlatform
         {
             InitializeComponent();
             this.SourceInitialized += WindowSourceInitialized;
+
+            AppManager manager = AppManager.GetInstance();
+            //Chargement des applis lourdes
+            foreach (var app in manager.AppList)
+            {
+                UserControl appBtn = new UserControl();
+                appBtn.Height = app.Value.Thumbnail.Height;
+                appBtn.Width = app.Value.Thumbnail.Width;
+                appBtn.Background = new ImageBrush(Imaging.CreateBitmapSourceFromHBitmap(app.Value.Thumbnail.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions())); ;
+                appBtn.MouseDown += (source, e) =>
+                {
+                    app.Value.LaunchApp();
+                };
+                AppPanel.Children.Insert(0, appBtn);
+            }
         }
 
         //Disable window drag & drop
@@ -60,12 +75,6 @@ namespace PlayPlatform
             return IntPtr.Zero;
         }
         #endregion
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            BrowserWindow browser = new BrowserWindow("http://google.fr");
-            browser.Show();
-        }
 
     }
 }

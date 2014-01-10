@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Custom="http://schemas.awesomium.com/winfx" x:Class="PlayPlatform.BrowserWindow"
-        Title="Browser" Height="526" Width="814" ResizeMode="NoResize"  
+        Title="Browser" ResizeMode="NoResize"  
         WindowStartupLocation="CenterScreen" WindowState="Maximized" IgnoreTaskbarOnMaximize="True" Topmost="True" ShowInTaskbar="False" WindowStyle="None" ShowTitleBar="False" AllowDrop="False">
         <Custom:WebControl x:Name="webView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 </Controls:MetroWindow>
