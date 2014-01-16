@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace PlayLibrary
 {
-    public enum CategoryType { Game, Project, Presentation };
+    public enum CategoryType { Game, Project, Presentation, Associative };
 }
