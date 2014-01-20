@@ -27,10 +27,13 @@ namespace PlayPlatform
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        public bool isAdmin { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
             this.SourceInitialized += WindowSourceInitialized;
+            this.ShowCloseButton = false;
 
             AppManager manager = AppManager.GetInstance();
             //Chargement des applis lourdes
@@ -39,6 +42,7 @@ namespace PlayPlatform
                 UserControl appBtn = new UserControl();
                 appBtn.Height = app.Value.Thumbnail.Height;
                 appBtn.Width = app.Value.Thumbnail.Width;
+                appBtn.Cursor = Cursors.Hand;
                 appBtn.Background = new ImageBrush(Imaging.CreateBitmapSourceFromHBitmap(app.Value.Thumbnail.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions())); ;
                 appBtn.MouseDown += (source, e) =>
                 {
@@ -46,7 +50,7 @@ namespace PlayPlatform
                 };
                 AppPanel.Children.Insert(0, appBtn);
 
-                Manifest man = XMLParser.FromXML("Manifest.xml");
+                //Manifest man = XMLParser.FromXML("Manifest.xml");
                 /*var appli = new PlayPlatform.XML.Application("Test", "1.0", "Description",
                     "path//'eeze", true, TechnologyType.CSharp, CategoryType.Project, "01/03/1958");
                 var serv = new Server("1.0", "IIS");
@@ -58,7 +62,15 @@ namespace PlayPlatform
             }
         }
 
-            
+        private void Border_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (!isAdmin)
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Owner = this;
+                loginWindow.Show();
+            }
+        }
 
         //Disable window drag & drop
         #region 
@@ -90,6 +102,8 @@ namespace PlayPlatform
             return IntPtr.Zero;
         }
         #endregion
+
+ 
 
     }
 }

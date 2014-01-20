@@ -12,6 +12,7 @@ namespace PlayPlatform.XML
 {
     public static class XMLParser
     {
+        //XML to domain objects
         public static Manifest FromXML(string pathToXml){
             DataContractSerializer dcs = new DataContractSerializer(typeof(Manifest));
             FileStream fs = new FileStream(pathToXml, FileMode.Open);
@@ -23,6 +24,7 @@ namespace PlayPlatform.XML
             return deserializedManifest;
         }
 
+        //Domain objects to XML
         public static string toXML(Manifest manifest)
         {
             using (MemoryStream memoryStream = new MemoryStream())

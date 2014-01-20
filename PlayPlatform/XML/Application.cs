@@ -50,7 +50,7 @@ namespace PlayPlatform.XML
             Category = category;
             Date = date;
         }
-
+        
         [OnDeserialized]
         void OnDeserializing(StreamingContext context)
         {

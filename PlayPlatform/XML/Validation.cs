@@ -18,7 +18,6 @@ namespace PlayPlatform.XML
         [DataMember]
         public string LastName { get; set; }
 
-
         [IgnoreDataMember]
         public DateTime DateTime { get; set; }
 

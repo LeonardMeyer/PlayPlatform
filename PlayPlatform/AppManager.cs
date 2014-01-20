@@ -22,7 +22,7 @@ namespace PlayPlatform
 
         private AppManager()
         {
-            DirectoryCatalog catalog = new DirectoryCatalog(@"../../../appfolder/");
+            DirectoryCatalog catalog = new DirectoryCatalog(@"../../../appFolder/");
             CompositionContainer container = new CompositionContainer(catalog);
 
             container.SatisfyImportsOnce(this);
@@ -32,7 +32,7 @@ namespace PlayPlatform
         {
             lock (instanceLock)
             {
-                if (_instance == null)
+                if(_instance == null)
                     _instance = new AppManager();
                 return _instance;
             }
@@ -41,6 +41,12 @@ namespace PlayPlatform
         public void LaunchApp(IPlayApp app)
         {
             app.LaunchApp();
+        }
+
+        public void LaunchWebApp(string url)
+        {
+            BrowserWindow browser = new BrowserWindow(url);
+            browser.Show();
         }
 
 
