@@ -13,5 +13,6 @@ namespace PlayPlatform
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

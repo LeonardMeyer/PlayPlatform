@@ -39,7 +39,10 @@ namespace PlayPlatform.XML
         [DataMember]
         public CategoryType Category { get; set; }
 
-        public Application(string name, string version, string description, string icon, bool mode, TechnologyType technology, CategoryType category, string date)
+        [DataMember]
+        public string Url { get; set; }
+
+        public Application(string name, string version, string description, string icon, bool mode, TechnologyType technology, CategoryType category, string date, string url)
         {
             Name = name;
             Version = version;
@@ -49,6 +52,7 @@ namespace PlayPlatform.XML
             Technology = technology;
             Category = category;
             Date = date;
+            Url = url;
         }
         
         [OnDeserialized]
