@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using PlayLibrary;
 
 namespace PlayPlatform
 {
@@ -54,10 +55,13 @@ namespace PlayPlatform
 
         private void SettingsBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PasswordWindow passWindow = new PasswordWindow();
-            passWindow.Owner = this;
-            this.Hide();
-            passWindow.Show();
+            if (!System.Windows.Application.Current.Windows.OfType<PasswordWindow>().Any())
+            {
+                PasswordWindow passWindow = new PasswordWindow();
+                passWindow.Owner = this;
+                this.Hide();
+                passWindow.Show();
+            }
         }
 
 

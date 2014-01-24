@@ -5,5 +5,5 @@
         xmlns:Custom="http://schemas.awesomium.com/winfx" x:Class="PlayPlatform.BrowserWindow"
         Title="Browser" ResizeMode="NoResize"  
         WindowStartupLocation="CenterScreen" WindowState="Maximized" IgnoreTaskbarOnMaximize="True" Topmost="True" ShowInTaskbar="False" WindowStyle="None" ShowTitleBar="False" AllowDrop="False">
-        <Custom:WebControl x:Name="webView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+    <Custom:WebControl x:Name="webView" VerticalAlignment="Stretch" ManipulationBoundaryFeedback="ManipulationBoundaryFeedbackHandler" HorizontalAlignment="Stretch"/>
 </Controls:MetroWindow>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -40,6 +41,7 @@ namespace PlayPlatform
             InitializeComponent();
             this.SourceInitialized += WindowSourceInitialized;
             this.ShowCloseButton = false;
+
             AppManager manager = AppManager.GetInstance();
             AppButtons = new List<UserControl>();
             //Chargement des applis lourdes
@@ -81,6 +83,23 @@ namespace PlayPlatform
                 AppButtons.Add(appBtn);
                 AppPanel.Children.Insert(0, appBtn);
 
+                //Chargement des applications web
+                string manifestsPath = "@\\10.0.0.1\folderName";
+                if (File.Exists(manifestsPath))
+                {
+                    string[] pathList = Directory.GetFiles(manifestsPath);
+                    foreach (string path in pathList)
+                    {
+                        ManifestList.Add(XMLParser.FromXML(path));
+                    }
+                }
+
+               /* foreach (var manifest in ManifestList)
+                {
+                    
+                }*/
+                
+
                 //Manifest man = XMLParser.FromXML("Manifest.xml");
                /* var appli = new PlayPlatform.XML.Application("Test", "1.0", "Description",
                     "path//'eeze", true, TechnologyType.CSharp, CategoryType.Project, "01/03/1958", "http://www.lol.fr");
@@ -91,20 +110,37 @@ namespace PlayPlatform
 
                 File.WriteAllText("foo.xml", XMLParser.toXML(man));*/
             }
-        }
 
+            /*UserControl lol = new UserControl();
+            lol.Height = 200;
+            lol.Width = 200;
+            lol.Margin = new Thickness(50);
+            lol.Background = new SolidColorBrush(Colors.YellowGreen);
+            lol.Cursor = Cursors.Hand;
+           lol.MouseUp += (sender, args) => new BrowserWindow("http://google.fr").Show();
+           AppPanel.Children.Insert(AppPanel.Children.Count, lol);*/
+        }
 
         private void Border_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (!isAdmin)
             {
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.Owner = this;
-                loginWindow.Show();
+                //Si il n'y a aucune LoginWindow
+                if (!System.Windows.Application.Current.Windows.OfType<LoginWindow>().Any())
+                {
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.Closed += (sen, args) => loginWindow = null; 
+                    loginWindow.Owner = this;
+                    loginWindow.Show();
+                }
             }
         }
 
-        
+        //Handler qui permet de retirer les effets de bounce WPF de la fenêtre
+        private void ManipulationBoundaryFeedbackHandler(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            e.Handled = true;
+         }
 
         //Disable window drag & drop
         #region 
@@ -136,6 +172,7 @@ namespace PlayPlatform
             return IntPtr.Zero;
         }
         #endregion
+
 
  
 

@@ -4,7 +4,8 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:playPlatform="clr-namespace:PlayPlatform"
         Title="Play" Height="526" Width="814" ResizeMode="NoResize"  
-        WindowStartupLocation="CenterScreen" WindowState="Maximized" IgnoreTaskbarOnMaximize="True" Topmost="True" ShowInTaskbar="True" WindowStyle="None" ShowTitleBar="False" AllowDrop="False" Background="#FF2D363E">
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" IgnoreTaskbarOnMaximize="True" Topmost="True" ShowInTaskbar="True" WindowStyle="None" ShowTitleBar="False" AllowDrop="False" Background="#FF2D363E"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -16,7 +17,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <playPlatform:FadingScrollViewer  VerticalScrollBarVisibility="Hidden" Margin="10" FadedEdgeThickness="20" FadedEdgeOpacity="0" FadedEdgeFalloffSpeed="4" Grid.Row="1" Grid.Column="1" PanningMode="VerticalOnly" Focusable="False">
+        <playPlatform:FadingScrollViewer  VerticalScrollBarVisibility="Hidden" ManipulationBoundaryFeedback="ManipulationBoundaryFeedbackHandler" Margin="10" FadedEdgeThickness="30" FadedEdgeOpacity="0" FadedEdgeFalloffSpeed="3" Grid.Row="1" Grid.Column="1" PanningMode="VerticalOnly" Focusable="False" >
             <playPlatform:FadingScrollViewer.Template>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                     <Grid x:Name="Grid" Background="{TemplateBinding Background}">

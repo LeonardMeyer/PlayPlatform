@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Awesomium.Core;
 using MahApps.Metro.Controls;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
@@ -30,38 +31,10 @@ namespace PlayPlatform
             webView.Source = new Uri(url);
         }
 
-
-
-
-        //Disable window drag & drop
-        #region
-        private void WindowSourceInitialized(object sender, EventArgs e)
+        //Handler qui permet de retirer les effets de bounce WPF de la fenêtre
+        private void ManipulationBoundaryFeedbackHandler(object sender, ManipulationBoundaryFeedbackEventArgs e)
         {
-            WindowInteropHelper helper = new WindowInteropHelper(this);
-            HwndSource source = HwndSource.FromHwnd(helper.Handle);
-            source.AddHook(WndProc);
+            e.Handled = true;
         }
-
-        const int WM_SYSCOMMAND = 0x0112;
-        const int SC_MOVE = 0xF010;
-
-        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
-        {
-
-            switch (msg)
-            {
-                case WM_SYSCOMMAND:
-                    int command = wParam.ToInt32() & 0xfff0;
-                    if (command == SC_MOVE)
-                    {
-                        handled = true;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return IntPtr.Zero;
-        }
-        #endregion
     }
 }
