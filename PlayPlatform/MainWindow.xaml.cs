@@ -111,14 +111,14 @@ namespace PlayPlatform
                 File.WriteAllText("foo.xml", XMLParser.toXML(man));*/
             }
 
-            /*UserControl lol = new UserControl();
+            UserControl lol = new UserControl();
             lol.Height = 200;
             lol.Width = 200;
             lol.Margin = new Thickness(50);
             lol.Background = new SolidColorBrush(Colors.YellowGreen);
             lol.Cursor = Cursors.Hand;
            lol.MouseUp += (sender, args) => new BrowserWindow("http://google.fr").Show();
-           AppPanel.Children.Insert(AppPanel.Children.Count, lol);*/
+           AppPanel.Children.Insert(AppPanel.Children.Count, lol);
         }
 
         private void Border_MouseUp(object sender, MouseButtonEventArgs e)

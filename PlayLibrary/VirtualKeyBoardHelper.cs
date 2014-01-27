@@ -29,12 +29,12 @@ namespace PlayLibrary
                 {
                     proc[0].Kill();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(ex.Message.ToString());
+                    //Vide car exception seulement si on trigger la méthide deux fois. Exception apparemment sans incidence.
                 }
+                
             }
-            
         }
     }
 }
