@@ -44,7 +44,7 @@ namespace PlayPlatform
 
             AppManager manager = AppManager.GetInstance();
             AppButtons = new List<UserControl>();
-            //Chargement des applis lourdes
+            //Chargement des applis DLL
             foreach (var app in manager.AppList)
             {
                 UserControl appBtn = new UserControl();
@@ -83,23 +83,6 @@ namespace PlayPlatform
                 AppButtons.Add(appBtn);
                 AppPanel.Children.Insert(0, appBtn);
 
-                //Chargement des applications web
-                string manifestsPath = "@\\10.0.0.1\folderName";
-                if (File.Exists(manifestsPath))
-                {
-                    string[] pathList = Directory.GetFiles(manifestsPath);
-                    foreach (string path in pathList)
-                    {
-                        ManifestList.Add(XMLParser.FromXML(path));
-                    }
-                }
-
-               /* foreach (var manifest in ManifestList)
-                {
-                    
-                }*/
-                
-
                 //Manifest man = XMLParser.FromXML("Manifest.xml");
                /* var appli = new PlayPlatform.XML.Application("Test", "1.0", "Description",
                     "path//'eeze", true, TechnologyType.CSharp, CategoryType.Project, "01/03/1958", "http://www.lol.fr");
@@ -111,14 +94,59 @@ namespace PlayPlatform
                 File.WriteAllText("foo.xml", XMLParser.toXML(man));*/
             }
 
-            UserControl lol = new UserControl();
-            lol.Height = 200;
-            lol.Width = 200;
-            lol.Margin = new Thickness(50);
-            lol.Background = new SolidColorBrush(Colors.YellowGreen);
-            lol.Cursor = Cursors.Hand;
-           lol.MouseUp += (sender, args) => new BrowserWindow("http://google.fr").Show();
-           AppPanel.Children.Insert(AppPanel.Children.Count, lol);
+            //Chargement des applications web
+            //string manifestsPath = "@\\10.0.0.1\folderName";
+            string manifestsPath = @"../../../manifestFolder/";
+
+            if (Directory.Exists(manifestsPath))
+            {
+                ManifestList = new List<Manifest>();
+                string[] pathList = Directory.GetFiles(manifestsPath);
+                foreach (string path in pathList)
+                {
+                    ManifestList.Add(XMLParser.FromXML(path));
+                }
+            }
+
+             foreach(var manifest in ManifestList)
+             {
+                 UserControl webAppBtn = new UserControl();
+                 webAppBtn.Height = 200;
+                 webAppBtn.Width = 200;
+                 webAppBtn.Margin = new Thickness(50);
+                 webAppBtn.Background = new SolidColorBrush(Colors.YellowGreen);
+                 webAppBtn.Cursor = Cursors.Hand;
+                 webAppBtn.MouseUp += (source, e) =>
+                 {
+                     //Ombre
+                     var btn = (UserControl)e.Source;
+                     DropShadowEffect eff = new DropShadowEffect();
+                     eff.Color = Colors.White;
+                     eff.BlurRadius = 20;
+                     eff.ShadowDepth = 0;
+                     eff.Opacity = 1;
+                     btn.Effect = eff;
+
+                     DoubleAnimation blurAnim = new DoubleAnimation(0, 20, TimeSpan.FromMilliseconds(220));
+                     blurAnim.AutoReverse = true;
+                     blurAnim.Completed += (sender, args) => new BrowserWindow(manifest.Application.Url).Show();
+
+                     eff.BeginAnimation(DropShadowEffect.BlurRadiusProperty, blurAnim);
+
+                     //Zoom
+                     ScaleTransform trans = new ScaleTransform();
+                     btn.RenderTransformOrigin = new Point(0.5, 0.5);
+                     btn.RenderTransform = trans;
+                     DoubleAnimation anim = new DoubleAnimation(1, 1.2, TimeSpan.FromMilliseconds(200));
+                     anim.AutoReverse = true;
+                     trans.BeginAnimation(ScaleTransform.ScaleXProperty, anim);
+                     trans.BeginAnimation(ScaleTransform.ScaleYProperty, anim);
+
+                 };
+                 AppPanel.Children.Insert(AppPanel.Children.Count, webAppBtn);  
+             }
+
+            
         }
 
         private void Border_MouseUp(object sender, MouseButtonEventArgs e)
