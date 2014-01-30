@@ -1,29 +1,17 @@
-﻿using System;
-using System.CodeDom;
+﻿using MahApps.Metro.Controls;
+using PlayPlatform.XML;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MahApps.Metro.Controls;
-using System.Runtime.InteropServices;
-using System.ComponentModel;
-using System.Windows.Interop;
-using PlayLibrary;
-using PlayPlatform.XML;
-using System.IO;
 
 namespace PlayPlatform
 {
@@ -149,7 +137,7 @@ namespace PlayPlatform
             
         }
 
-        private void Border_MouseUp(object sender, MouseButtonEventArgs e)
+        private void GridConnect_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (!isAdmin)
             {
@@ -157,10 +145,25 @@ namespace PlayPlatform
                 if (!System.Windows.Application.Current.Windows.OfType<LoginWindow>().Any())
                 {
                     LoginWindow loginWindow = new LoginWindow();
-                    loginWindow.Closed += (sen, args) => loginWindow = null; 
                     loginWindow.Owner = this;
                     loginWindow.Show();
                 }
+            }
+            else
+            {
+                PasswordWindow passWindow = new PasswordWindow();
+                passWindow.Show();
+            }
+        }
+
+        private void disconnectBtn_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (isAdmin)
+            {
+                this.profileTxtBlock.Text = "Invité";
+                this.disconnectBtn.Visibility = Visibility.Hidden;
+                this.ShowCloseButton = false;
+                this.isAdmin = false;
             }
         }
 
@@ -200,6 +203,8 @@ namespace PlayPlatform
             return IntPtr.Zero;
         }
         #endregion
+
+        
 
 
  

@@ -5,7 +5,19 @@
         x:Class="PlayPlatform.BrowserWindow"
         Title="Browser" ResizeMode="NoResize"  
         WindowStartupLocation="CenterScreen" WindowState="Maximized" Topmost="True" ShowInTaskbar="False" WindowStyle="None" AllowDrop="False" AllowsTransparency="False">
-    <WindowsFormsHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <wf:WebBrowser x:Name="WebView" />
-    </WindowsFormsHost>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+        <WindowsFormsHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <wf:WebBrowser x:Name="WebView" />
+        </WindowsFormsHost>
+    </Grid>
 </Window>

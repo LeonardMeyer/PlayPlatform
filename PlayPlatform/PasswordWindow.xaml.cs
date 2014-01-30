@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 
 namespace PlayPlatform
@@ -23,13 +14,13 @@ namespace PlayPlatform
         public PasswordWindow()
         {
             InitializeComponent();
+            
         }
 
-        //Enable drag with no windows style
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        protected override void OnContentRendered(EventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-            this.DragMove();
+            base.OnContentRendered(e);
+            Keyboard.Focus(oldPassTxtBox);
         }
 
         private void confirmBtn_Click(object sender, RoutedEventArgs e)
@@ -60,7 +51,14 @@ namespace PlayPlatform
 
         private void MetroWindow_Closed(object sender, EventArgs e)
         {
-            this.Owner.Show();
+            if (this.Owner != null)
+            {
+                this.Owner.Show();
+                this.Owner.Owner.Focus();
+                var ownerPassBox = (PasswordBox) this.Tag;
+                Keyboard.Focus(ownerPassBox);
+            }
+            
         }
 
     }

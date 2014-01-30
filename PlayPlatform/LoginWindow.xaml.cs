@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using PlayLibrary;
 
@@ -27,11 +17,10 @@ namespace PlayPlatform
             InitializeComponent();
         }
 
-        //Enable drag with no windows style
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        protected override void OnContentRendered(EventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
-            this.DragMove();
+            base.OnContentRendered(e);
+            Keyboard.Focus(pwdBox);
         }
 
         private void passwdBtn_Click(object sender, RoutedEventArgs e)
@@ -40,6 +29,7 @@ namespace PlayPlatform
             {
                 var owner = (this.Owner as MainWindow);
                 owner.profileTxtBlock.Text = "Administrateur";
+                owner.disconnectBtn.Visibility = Visibility.Visible;
                 owner.ShowCloseButton = true;
                 owner.isAdmin = true;
                 this.Close();
@@ -55,11 +45,13 @@ namespace PlayPlatform
 
         private void SettingsBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!System.Windows.Application.Current.Windows.OfType<PasswordWindow>().Any())
+            if (!Application.Current.Windows.OfType<PasswordWindow>().Any())
             {
+                this.Hide();
+                VirtualKeyBoardHelper.RemoveTabTip();
                 PasswordWindow passWindow = new PasswordWindow();
                 passWindow.Owner = this;
-                this.Hide();
+                passWindow.Tag = pwdBox;
                 passWindow.Show();
             }
         }

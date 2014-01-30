@@ -1,12 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using PlayLibrary;
+using System;
 using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Navigation;
-using mshtml;
-using PlayLibrary;
-using NavigationEventArgs = System.Windows.Navigation.NavigationEventArgs;
 
 
 namespace PlayPlatform
