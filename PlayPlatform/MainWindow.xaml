@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:playPlatform="clr-namespace:PlayPlatform"
         Title="Play" Height="526" Width="814" ResizeMode="NoResize"  
-        WindowStartupLocation="CenterScreen" WindowState="Maximized" IgnoreTaskbarOnMaximize="True" Topmost="True" ShowInTaskbar="True" WindowStyle="None" ShowTitleBar="False" AllowDrop="False" Background="#FF2D363E"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" IgnoreTaskbarOnMaximize="True" Topmost="True" ShowInTaskbar="True" WindowStyle="None" ShowTitleBar="False" AllowDrop="False" Background="#FF2D363E" Closing="MetroWindow_Closing"
         >
     <Window.Resources>
         <ResourceDictionary>

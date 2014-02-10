@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using PlayLibrary;
 using PlayPlatform.XML;
 using System;
 using System.Collections.Generic;
@@ -203,6 +204,11 @@ namespace PlayPlatform
             return IntPtr.Zero;
         }
         #endregion
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            VirtualKeyBoardHelper.AttachTabTip();
+        }
 
         
 

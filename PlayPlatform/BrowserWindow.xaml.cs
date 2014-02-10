@@ -1,4 +1,5 @@
-﻿using PlayLibrary;
+﻿using MahApps.Metro.Controls;
+using PlayLibrary;
 using System;
 using System.Windows;
 using System.Windows.Forms;
