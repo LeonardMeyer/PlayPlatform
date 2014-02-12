@@ -2,30 +2,45 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:playPlatform="clr-namespace:PlayPlatform" x:Name="browserWindow"
         x:Class="PlayPlatform.BrowserWindow"
         Title="Browser" ResizeMode="NoResize"  
-        WindowStartupLocation="CenterScreen" WindowState="Maximized" Topmost="True" ShowInTaskbar="True" WindowStyle="None" AllowDrop="False" AllowsTransparency="False">
-    <Grid>
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"  ShowInTaskbar="True" Topmost="False" WindowStyle="None" AllowDrop="False" AllowsTransparency="False">
+    <Grid x:Name="BrowserGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.75*"/>
             <ColumnDefinition Width="2.3*"/>
             <ColumnDefinition Width="40*"/>
         </Grid.ColumnDefinitions>
-            <WindowsFormsHost HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3">
-                    <wf:WebBrowser x:Name="WebView" />
-            </WindowsFormsHost>
-            <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
-                <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="returnBtn" Width="197.333" Height="197.333" Clip="F1 M 0,0L 197.333,0L 197.333,197.333L 0,197.333L 0,0">
-                    <Canvas x:Name="Calque_1" Width="197.333" Height="197.333" Canvas.Left="0" Canvas.Top="0">
-                        <Path x:Name="Path" Width="196.843" Height="196.841" Canvas.Left="6.35783e-007" Canvas.Top="0.49202" Stretch="Fill" Fill="#FFFEFEFE" Data="F1 M 84.004,55.0867L 114.304,55.0867L 82.4053,87.4893L 151.523,87.4893L 151.523,109.944L 82.4053,109.944L 114.304,142.487L 84.004,142.487L 42.4027,98.9133L 42.4027,98.5093M 9.04533,98.9133C 9.04533,107.061 10.1013,114.916 12.2267,122.491C 14.356,130.064 17.3707,137.165 21.2693,143.812C 25.168,150.449 29.844,156.472 35.292,161.872C 40.7347,167.273 46.7627,171.923 53.364,175.816C 59.964,179.719 67.0587,182.728 74.6307,184.847C 82.208,186.973 90.076,188.035 98.224,188.035C 106.372,188.035 114.241,186.973 121.819,184.847C 129.393,182.728 136.501,179.719 143.151,175.816C 149.789,171.923 155.848,167.253 161.295,161.801C 166.743,156.367 171.412,150.341 175.313,143.747C 179.215,137.144 182.243,130.064 184.417,122.491C 186.585,114.916 187.672,107.061 187.672,98.9133C 187.672,90.7707 186.585,82.912 184.417,75.3427C 182.243,67.7667 179.215,60.6653 175.313,54.02C 171.412,47.3787 166.715,41.336 161.225,35.8907C 155.733,30.4427 149.661,25.78 143.013,21.876C 136.371,17.9827 129.264,14.9493 121.684,12.7787C 114.109,10.62 106.289,9.52933 98.224,9.52933C 85.9973,9.52933 74.4733,11.8947 63.6707,16.6307C 52.86,21.3773 43.3947,27.7867 35.292,35.8907C 27.1853,43.9893 20.78,53.4693 16.084,64.312C 11.388,75.1654 9.04533,86.696 9.04533,98.9133 Z M 6.35783e-007,99.0453C 6.35783e-007,90.108 1.2,81.4493 3.59067,73.0813C 5.98667,64.7147 9.32667,56.8773 13.624,49.5733C 17.9173,42.2667 23.064,35.608 29.0427,29.5827C 35.0227,23.5614 41.668,18.4 48.976,14.108C 56.292,9.81734 64.108,6.4707 72.4373,4.08401C 80.764,1.68802 89.4093,0.49202 98.3533,0.49202C 107.312,0.49202 115.939,1.68802 124.276,4.08401C 132.603,6.4707 140.421,9.83203 147.735,14.1747C 155.045,18.5147 161.705,23.692 167.735,29.712C 173.756,35.744 178.925,42.396 183.224,49.704C 187.513,57.0053 190.861,64.828 193.252,73.1493C 195.652,81.4733 196.843,90.108 196.843,99.0453C 196.843,108.08 195.652,116.76 193.252,125.081C 190.861,133.401 187.513,141.211 183.224,148.525C 178.925,155.832 173.756,162.464 167.735,168.447C 161.705,174.428 155.045,179.568 147.735,183.857C 140.421,188.151 132.603,191.472 124.276,193.82C 115.939,196.16 107.312,197.333 98.3533,197.333C 89.4093,197.333 80.764,196.14 72.4373,193.756C 64.108,191.359 56.292,188.016 48.976,183.721C 41.668,179.437 35.0227,174.271 29.0427,168.248C 23.064,162.227 17.9173,155.589 13.624,148.327C 9.32667,141.061 5.98667,133.276 3.59067,124.949C 1.2,116.628 6.35783e-007,108 6.35783e-007,99.0453 Z "/>
+        <WindowsFormsHost x:Name="winHost" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <wf:WebBrowser x:Name="WebView" />
+        </WindowsFormsHost>
+        <playPlatform:AirspacePopup x:Name="AirspacePopup" PlacementTarget="{Binding ElementName=browserWindow}" 
+                         FollowPlacementTarget="True"
+                          IsTopmost="True"
+                         AllowOutsideScreenPlacement="False"
+                         ParentWindow="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                         IsOpen="True"
+                         AllowsTransparency="True"
+                         Placement="Absolute"
+                         HorizontalOffset="25"
+                         VerticalOffset="25"
+                         Height="50"
+                         Width="50">
+             <Viewbox x:Name="canvasBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                    <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="returnBtn" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="197.333" Height="197.333" Clip="F1 M 0,0L 197.333,0L 197.333,197.333L 0,197.333L 0,0">
+                        <Canvas x:Name="Calque_1" Width="197.333" Height="197.333" Canvas.Left="0" Canvas.Top="0">
+                            <Border MouseDown="canvasBox_MouseDown" Cursor="Hand" Background="Transparent">
+                                <Path x:Name="Path"  Canvas.Left="6.35783e-007" Canvas.Top="0.49202" Stretch="Fill" Fill="#FFFEFEFE" Data="F1 M 84.004,55.0867L 114.304,55.0867L 82.4053,87.4893L 151.523,87.4893L 151.523,109.944L 82.4053,109.944L 114.304,142.487L 84.004,142.487L 42.4027,98.9133L 42.4027,98.5093M 9.04533,98.9133C 9.04533,107.061 10.1013,114.916 12.2267,122.491C 14.356,130.064 17.3707,137.165 21.2693,143.812C 25.168,150.449 29.844,156.472 35.292,161.872C 40.7347,167.273 46.7627,171.923 53.364,175.816C 59.964,179.719 67.0587,182.728 74.6307,184.847C 82.208,186.973 90.076,188.035 98.224,188.035C 106.372,188.035 114.241,186.973 121.819,184.847C 129.393,182.728 136.501,179.719 143.151,175.816C 149.789,171.923 155.848,167.253 161.295,161.801C 166.743,156.367 171.412,150.341 175.313,143.747C 179.215,137.144 182.243,130.064 184.417,122.491C 186.585,114.916 187.672,107.061 187.672,98.9133C 187.672,90.7707 186.585,82.912 184.417,75.3427C 182.243,67.7667 179.215,60.6653 175.313,54.02C 171.412,47.3787 166.715,41.336 161.225,35.8907C 155.733,30.4427 149.661,25.78 143.013,21.876C 136.371,17.9827 129.264,14.9493 121.684,12.7787C 114.109,10.62 106.289,9.52933 98.224,9.52933C 85.9973,9.52933 74.4733,11.8947 63.6707,16.6307C 52.86,21.3773 43.3947,27.7867 35.292,35.8907C 27.1853,43.9893 20.78,53.4693 16.084,64.312C 11.388,75.1654 9.04533,86.696 9.04533,98.9133 Z M 6.35783e-007,99.0453C 6.35783e-007,90.108 1.2,81.4493 3.59067,73.0813C 5.98667,64.7147 9.32667,56.8773 13.624,49.5733C 17.9173,42.2667 23.064,35.608 29.0427,29.5827C 35.0227,23.5614 41.668,18.4 48.976,14.108C 56.292,9.81734 64.108,6.4707 72.4373,4.08401C 80.764,1.68802 89.4093,0.49202 98.3533,0.49202C 107.312,0.49202 115.939,1.68802 124.276,4.08401C 132.603,6.4707 140.421,9.83203 147.735,14.1747C 155.045,18.5147 161.705,23.692 167.735,29.712C 173.756,35.744 178.925,42.396 183.224,49.704C 187.513,57.0053 190.861,64.828 193.252,73.1493C 195.652,81.4733 196.843,90.108 196.843,99.0453C 196.843,108.08 195.652,116.76 193.252,125.081C 190.861,133.401 187.513,141.211 183.224,148.525C 178.925,155.832 173.756,162.464 167.735,168.447C 161.705,174.428 155.045,179.568 147.735,183.857C 140.421,188.151 132.603,191.472 124.276,193.82C 115.939,196.16 107.312,197.333 98.3533,197.333C 89.4093,197.333 80.764,196.14 72.4373,193.756C 64.108,191.359 56.292,188.016 48.976,183.721C 41.668,179.437 35.0227,174.271 29.0427,168.248C 23.064,162.227 17.9173,155.589 13.624,148.327C 9.32667,141.061 5.98667,133.276 3.59067,124.949C 1.2,116.628 6.35783e-007,108 6.35783e-007,99.0453 Z "/>
+                            </Border>
+                        </Canvas>
                     </Canvas>
-                </Canvas>
             </Viewbox>
+        </playPlatform:AirspacePopup>
     </Grid>
 </Window>

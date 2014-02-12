@@ -163,7 +163,7 @@ namespace PlayPlatform
             {
                 this.profileTxtBlock.Text = "Invité";
                 this.disconnectBtn.Visibility = Visibility.Hidden;
-                this.ShowCloseButton = false;
+                this.exitBtn.Visibility = Visibility.Hidden;
                 this.isAdmin = false;
             }
         }
@@ -208,6 +208,11 @@ namespace PlayPlatform
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             VirtualKeyBoardHelper.AttachTabTip();
+        }
+
+        private void exitBtn_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
 
         

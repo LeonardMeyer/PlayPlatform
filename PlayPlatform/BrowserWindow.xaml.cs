@@ -23,6 +23,12 @@ namespace PlayPlatform
 
         private void LoadCompleteEventHandler(object sender, WebBrowserDocumentCompletedEventArgs navigationEventArgs)
         {
+            //Repositionnement de la popup par rapport à la grid
+            AirspacePopup.Width = BrowserGrid.ColumnDefinitions[1].ActualWidth;
+            AirspacePopup.Height = BrowserGrid.RowDefinitions[1].ActualHeight;
+            AirspacePopup.HorizontalOffset = BrowserGrid.ColumnDefinitions[0].ActualWidth;
+            AirspacePopup.VerticalOffset = BrowserGrid.RowDefinitions[0].ActualHeight;
+
             HtmlElementCollection elements = this.WebView.Document.GetElementsByTagName("input");
             //Pour chaque élement input dans le document...
             foreach (HtmlElement input in elements)
@@ -34,6 +40,11 @@ namespace PlayPlatform
                     input.LostFocus += (o, args) => VirtualKeyBoardHelper.RemoveTabTip();
                 }
             }
+        }
+
+        private void canvasBox_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 }

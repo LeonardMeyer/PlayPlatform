@@ -30,7 +30,7 @@ namespace PlayPlatform
                 var owner = (this.Owner as MainWindow);
                 owner.profileTxtBlock.Text = "Administrateur";
                 owner.disconnectBtn.Visibility = Visibility.Visible;
-                owner.ShowCloseButton = true;
+                owner.exitBtn.Visibility = Visibility.Visible;
                 owner.isAdmin = true;
                 this.Close();
             }

@@ -25,7 +25,7 @@ namespace PlayPlatform.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("exia54")]
         public string Password {
             get {
                 return ((string)(this["Password"]));
