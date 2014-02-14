@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Manifest  xmlns="http://schemas.datacontract.org/2004/07/PlayPlatform.XML" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Application>
+		<Category>Associative</Category>
+		<Date>20/01/2014</Date>
+		<Description>Application qui permet de partager les evenements de l'exia</Description>
+		<Icon>http://10.154.50.37:8080/Images/Event.png</Icon>
+		<Mode>true</Mode>
+		<Name>Event</Name>
+		<Technology>PHP</Technology>
+		<Type>Exia</Type>
+		<Url>http://10.154.50.37:8080/Event/</Url>
+		<Version>1.0</Version>
+	</Application>
+	
+	<Database>
+		<ConnectionString></ConnectionString>
+		<NameDatabase>eventdatabase</NameDatabase>
+		<Dbdriver>mysql</Dbdriver>
+		<Hostname>localhost</Hostname>
+		<Password>Tp8pS23h</Password>
+		<Right>r</Right>
+		<Username>root</Username>
+		<Version>1.0</Version>
+	</Database>
+	
+	<Server>
+		<Type>Apache</Type>
+		<Version>1.0</Version>
+	</Server>  
+	
+	<Validation>
+		<Date>20/02/2013</Date>
+		<FirstName>Bruno</FirstName>
+		<LastName>Bardelli</LastName>
+	</Validation>
+	
+</Manifest>

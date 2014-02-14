@@ -19,7 +19,7 @@ namespace PlayLibrary
             Process.Start("C:\\Program Files\\Common Files\\microsoft shared\\ink\\tabtip.exe");
         }
 
-        //Permet d'attacher le processus du clavier virtual Windows 8
+        //Permet de tuer le processus du clavier virtual Windows 8
         public static void RemoveTabTip()
         {
             Process[] proc = Process.GetProcessesByName("tabtip");

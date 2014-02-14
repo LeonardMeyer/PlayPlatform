@@ -35,11 +35,13 @@ namespace PlayPlatform
             }
         }
 
+        //Lancement d'appli WPF
         public void LaunchApp(IPlayApp app)
         {
             app.LaunchApp();
         }
 
+        //Lancement d'appli web
         public void LaunchWebApp(string url)
         {
             BrowserWindow browser = new BrowserWindow(url);

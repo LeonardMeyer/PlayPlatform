@@ -4,7 +4,7 @@
       <Category>Associative</Category>
       <Date>10/02/2014</Date>
       <Description>Planning des promotions eXia</Description>
-      <Icon>path//'eeze</Icon>
+      <Icon>http://10.154.50.37:8080/Images/Planning.png</Icon>
       <Mode>true</Mode>
       <Name>Test</Name>
       <Technology>PHP</Technology>
